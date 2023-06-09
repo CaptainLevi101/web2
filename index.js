@@ -7,7 +7,7 @@ app.listen(port,function(err){
         return;
     }
     else{
-        console.log("server is running fine");
+        console.log("server is running");
     }
 
 })
