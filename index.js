@@ -9,10 +9,25 @@ const user = require('./models/user');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
-
+const MongoStore=require('connect-mongo');
 
 app.use(express.urlencoded());
 app.use(cookieParser());
+const sessionStore = MongoStore.create({
+    mongoUrl: 'mongodb://localhost:27017/major',
+    collectionName: 'Potter localhost:27017',
+    ttl: 3600,
+    // session expiration time in seconds (optional)
+  });
+//mongostore is  used to store session key in db
+// const mongooseConnection = db.connection;
+
+// const sessionStore = new MongoStore({
+//     mongooseConnection, // Replace with your Mongoose connection
+//     autoRemove: 'disabled'
+//   }, function(err) {
+//     console.log(err || 'connect-mongodb session OK');
+//   });
 app.use(session({
     name: 'social',
     //change the secret beore deployment in production mode
@@ -21,7 +36,8 @@ app.use(session({
     cookie: {
         maxAge:(1000*60*60),
 
-    }
+    },
+    store: sessionStore,
 }));
 app.use(passport.initialize());
 app.use(passport.session());
