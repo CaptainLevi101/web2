@@ -5,20 +5,28 @@ const port = 8000;
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
-const user = require('./models/user');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore=require('connect-mongo');
-
+const sassMiddleware=require('node-sass-middleware');
+app.use(sassMiddleware({
+    src:'./assets/scss',
+    dest:'./assets/css',
+    debug:true,
+    outputStyle:'extended',
+    prefix:'/css'
+}))
 app.use(express.urlencoded());
 app.use(cookieParser());
-const sessionStore = MongoStore.create({
-    mongoUrl: 'mongodb://localhost:27017/major',
-    collectionName: 'Potter localhost:27017',
-    ttl: 3600,
-    // session expiration time in seconds (optional)
-  });
+// const sessionStore = MongoStore.create({
+//     mongooseConnection: db,
+//     autoRemove: 'disabled'
+//     // mongoUrl: 'mongodb://localhost:27017/major',
+//     // collectionName: 'Potter localhost:27017',
+//     // ttl: 3600,
+//     // session expiration time in seconds (optional)
+//   });
 //mongostore is  used to store session key in db
 // const mongooseConnection = db.connection;
 
@@ -28,24 +36,52 @@ const sessionStore = MongoStore.create({
 //   }, function(err) {
 //     console.log(err || 'connect-mongodb session OK');
 //   });
-app.use(session({
-    name: 'social',
-    //change the secret beore deployment in production mode
-    secret: 'hshhtrue',
-    saveUninitialized: false,
-    cookie: {
-        maxAge:(1000*60*60),
+// app.use(session({
+//     name: 'social',
+//     //change the secret beore deployment in production mode
+//     secret: 'hshhtrue',
+//     saveUninitialized: false,
+//     cookie: {
+//         maxAge:(1000*60*60),
 
+//     },
+//     store: sessionStore,
+// }));
+const store = new MongoStore({
+    mongoUrl: 'mongodb://localhost:27017/major',
+    collectionName: 'sessions',
+    mongooseConnection: db,
+    autoRemove: 'disabled'
+});
+app.use(session({
+    name: 'codeial',
+    // TODO change the secret before deployment in production mode
+    secret: 'blahsomething',
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        maxAge: (1000 * 60 * 100)
     },
-    store: sessionStore,
+    store: store
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 
 
-app.use('/', require('./routes/index'));
 
+
+
+app.use(expressLayouts);
+// extract style and scripts from sub pages into the layout
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
+
+
+
+app.use('/', require('./routes/index'));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, "./assets")));
@@ -56,8 +92,7 @@ app.use(express.static(path.join(__dirname, "./assets")));
 
 
 //use routing before setting up the view engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+
 
 //beware of all the facts before proceeding to the next step
 

@@ -2,7 +2,9 @@ const User = require("../models/user");
 
 module.exports.profile = function (req, res) {
   // console.log(req.cookies);
-  return res.render('profile');
+  return res.render('profile', {
+    title: 'User Profile'
+})
   // res.end('<h1>Ashish Parashar</h1>');
   // if (req.cookies.user_id) {
   //   User.findById(req.cookies.user_id)
@@ -72,6 +74,7 @@ module.exports.create = async function (req, res) {
     return res.redirect('back');
   }
 };
+
 //create session for the user
 module.exports.createSession = async function (req, res) {
   // try {  <!------Manual uthentication-----------!>

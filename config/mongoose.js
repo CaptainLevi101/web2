@@ -1,7 +1,7 @@
 //require the library 
 const mongoose=require('mongoose');
 //connnect to the database 
-mongoose.connect('mongodb://localhost/major');
+mongoose.connect('mongodb://localhost:27017/major',{useNewUrlParser:true,useUnifiedTopology:true});
 //acquire the connection to check if it is successful
 const db=mongoose.connection;
 //error
