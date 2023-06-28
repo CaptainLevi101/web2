@@ -1,10 +1,20 @@
 const User = require("../models/user");
 
-module.exports.profile = function (req, res) {
-  // console.log(req.cookies);
-  return res.render('profile', {
-    title: 'User Profile'
-})
+
+module.exports.profile = async function (req, res) {
+  try {
+    const user = await User.findById(req.params.id).exec();
+    return res.render('profile', {
+      title: "social||Profile",
+      profile_user: user
+    });
+  } catch (err) {
+    // Handle any errors that occurred during execution
+    console.error(err);
+    return res.redirect('back');
+  }
+};
+
   // res.end('<h1>Ashish Parashar</h1>');
   // if (req.cookies.user_id) {
   //   User.findById(req.cookies.user_id)
@@ -36,7 +46,7 @@ module.exports.profile = function (req, res) {
   //   return res.redirect('/users/sign-in');
   // }
 
-}
+
 module.exports.signUp = function (req, res) {
   if(req.isAuthenticated()){
     return res.redirect('/users/profile');
@@ -128,3 +138,18 @@ module.exports.destroySession = function(req, res) {
     return res.redirect('/');
   });
 };
+module.exports.update = async function(req, res) {
+  try {
+    if (req.user.id == req.params.id) {
+      const user = await User.findByIdAndUpdate(req.params.id, req.body);
+      return res.redirect('back');
+    } else {
+      return res.status(401).send('Unauthorized');
+    }
+  } catch (err) {
+    // Handle any errors that occurred during the process
+    console.error(err);
+    return res.status(500).send('Internal Server Error');
+  }
+};
+

@@ -1,2 +1,43 @@
-li {
-  list-style-type: none; }
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0; }
+
+.post-box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  background-color: #f1f1f1;
+  padding: 10px; }
+  .post-box .post-box1 {
+    flex: 1;
+    margin-right: 10px; }
+  .post-box .post-box2 {
+    flex: 0 0 auto; }
+    .post-box .post-box2 .delete-button {
+      color: #ff0000;
+      text-decoration: none; }
+      .post-box .post-box2 .delete-button:hover {
+        text-decoration: underline; }
+
+.post-comments {
+  margin-top: 10px; }
+  .post-comments form {
+    margin-bottom: 10px; }
+    .post-comments form input[type='text'] {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px; }
+    .post-comments form input[type='submit'] {
+      padding: 5px 10px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      cursor: pointer; }
+  .post-comments .post-comments-list {
+    margin-left: 5%;
+    color: #376b89;
+    box-sizing: border-box;
+    height: auto; }

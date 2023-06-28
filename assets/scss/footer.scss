@@ -1,18 +1,33 @@
-#layout-footer{
-    color: white;
-    a{
-        color: white;
-        text-decoration: none;
-    }
-
+#layout-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     background: grey;
-    padding: 5px 10px;
     display: flex;
-    justify-content: flex-start;
-
-    .footer-nav{
-        ul{
-            list-style: none;
+   
+    .footer-nav {
+      ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+  
+        li {
+          margin: 0 10px;
+  
+          a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px; 
+            transition: background-color 0.3s ease;
+            border-radius: 20px;
+  
+            &:hover {
+              background-color: #333;
+            }
+          }
         }
+      }
     }
-}
+  }
+  

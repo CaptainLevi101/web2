@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+// Global styles
+.bord{
+  border: 1px solid rgb(125, 123, 123);
+}
+li {
+  height: auto;
+}
+small {
+  font-size: 10px;
+  a {
+    color: #e02020;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.loc{
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+}
+p{
+  margin: auto;
+}

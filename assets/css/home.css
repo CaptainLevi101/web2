@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0; }
+
+#home-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px; }
+
+#feed-posts {
+  width: 70%;
+  padding: 10px; }
+  #feed-posts h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px; }
+  #feed-posts form {
+    margin-bottom: 10px; }
+    #feed-posts form textarea {
+      width: 100%;
+      resize: none;
+      border: 1px solid #ccc;
+      padding: 5px;
+      font-size: 14px; }
+    #feed-posts form input[type='submit'] {
+      padding: 5px 10px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      cursor: pointer; }
+  #feed-posts #posts-list-container ul {
+    list-style-type: none;
+    padding: 0; }
+
+#user-friends {
+  width: 25%;
+  padding: 10px;
+  border-left: 1px solid lightgrey;
+  position: absolute;
+  top: 10%;
+  right: 10px; }
+  #user-friends h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px; }
+  #user-friends p {
+    margin: 5px 0; }
+    #user-friends p a {
+      color: #3498db;
+      text-decoration: none; }
+      #user-friends p a:hover {
+        text-decoration: underline; }

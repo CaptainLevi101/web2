@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+.bord {
+  border: 1px solid #7d7b7b; }
+
+li {
+  height: auto; }
+
+small {
+  font-size: 10px; }
+  small a {
+    color: #e02020;
+    text-decoration: none; }
+    small a:hover {
+      text-decoration: underline; }
+
+.loc {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box; }
+
+p {
+  margin: auto; }
