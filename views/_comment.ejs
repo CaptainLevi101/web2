@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/comments.css">
 
-<li class="bord">
+<li class="bord" id="comment-<%= comment._id %>">
    
         <div class="loc">
             <small id="na">
@@ -8,7 +8,7 @@
             </small>
             <% if (locals.user && locals.user.id==comment.user.id){ %>
                 <small>
-                    <a href="/comments/destroy/<%= comment.id %>">delete</a>
+                    <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>">delete</a>
                 </small>
                 <% } %>
                
