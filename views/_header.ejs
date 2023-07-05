@@ -3,7 +3,7 @@
         <div class="mini-logo">
             <p>
                 <a href='/'>
-                    codeial
+                    Social
                 </a>
             </p>
         </div>
@@ -12,10 +12,10 @@
             <ul>
                 <% if (locals.user){ %>
                 <li>
-                    <a href="/users/profile"><%= user.name %></a>
+                    <a href="/users/profile/<%=user._id%>"> <img src="<%= user.avatar %>" alt="<%= user.name %>" width="50"></a>
                 </li>
                 <li>
-                    <a href="/users/sign-out">Sign Out</a>
+                    <a href="/users/sign-out" class="signout">Sign Out</a>
                 </li>
                 <% }else{ %>
                 <li>

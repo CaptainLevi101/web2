@@ -1,31 +1,27 @@
-/* Styles for the user profile page */
-/* Base styles */
 html,
 body {
   font-family: Arial, sans-serif;
   font-size: 16px; }
 
 .container {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #e8e6e6;
-  border-radius: 20px;
-  height: auto; }
-
-img {
-  display: block;
+  width: 30vw;
+  /* Set container width to 50% of viewport width */
+  height: auto;
+  /* Set container height to 50% of viewport height */
   margin: 0 auto;
-  width: 150px;
-  height: 140px;
-  border-radius: 50%; }
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px; }
+
+h1 {
+  text-align: center; }
 
 form {
   margin-top: 20px; }
 
 input[type="text"],
 input[type="email"],
-input[type="file"] {
+input[type="password"] {
   display: block;
   width: 100%;
   padding: 10px;
@@ -36,13 +32,13 @@ input[type="file"] {
 
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="file"]:focus {
+input[type="password"]:focus {
   outline: none;
   border-color: #555; }
 
 input[type="submit"] {
   display: block;
-  width: 100%;
+  width: 40%;
   padding: 10px;
   border: none;
   background-color: #007bff;
@@ -51,7 +47,8 @@ input[type="submit"] {
   font-weight: bold;
   border-radius: 5px;
   transition: background-color 0.3s ease-in-out;
-  cursor: pointer; }
+  cursor: pointer;
+  margin-left: 30%; }
 
 input[type="submit"]:hover {
   background-color: #0056b3; }
@@ -59,3 +56,16 @@ input[type="submit"]:hover {
 p {
   text-align: center;
   margin-top: 20px; }
+
+a.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out; }
+
+a.button:hover {
+  background-color: #0056b3; }
