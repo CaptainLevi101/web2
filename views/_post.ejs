@@ -16,7 +16,7 @@
                 </p>
                 </div>
                 <div class="post-box2">
-                    <% if(locals.user){ %>
+                    <% if(locals.user && post.user.id==user.id){ %>
                         <small>
                             <a href="/posts/destroy/<%=post.id%>"  class="delete-post-button delete-button">del</a>
                         </small>
