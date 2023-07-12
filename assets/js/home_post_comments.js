@@ -14,7 +14,6 @@ class PostComments {
   
       let self = this;
       this.postContainer.on('click', ' .delete-comment-button', function (e) {
-        e.preventDefault();
         self.deleteComment($(this));
       });
      
@@ -35,7 +34,7 @@ class PostComments {
             $(`#post-comments-${postId}`).prepend(newComment);
             pSelf.deleteComment($(' .delete-comment-button', newComment));
             
-  
+          new ToggleLike($(' .toggle-like-button',newComment));
             new Noty({
               theme: 'relax',
               text: 'Comment published!',
@@ -56,24 +55,31 @@ class PostComments {
         <div class="loc">
           <small id="na">${comment.user.name}</small>
           <small>
+          <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${comment._id}"&type=Comment">
+          0 Likes
+         </small>
+          <small>
+
             <a class="delete-comment-button" href="/comments/destroy/${comment._id}">delete</a>
           </small>
         </div>
         <p>${comment.content}</p>
+
       </li>`);
     }
-  
     deleteComment(deleteLink) {
-      $(deleteLink).click(function (e) {
-         console.log(this);
+      let self = this; // Store reference to the PostComments instance
+      $(this.postContainer).on('click', '.delete-comment-button', function (e) {
         e.preventDefault();
-      
+    
+        let commentId = $(this).data('comment-id'); // Get the comment ID from the data attribute
+    
         $.ajax({
           type: 'GET',
-          url: $(this).prop('href'),
+          url: `/comments/destroy/${commentId}`, // Use the comment ID in the URL
           success: function (data) {
             $(`#comment-${data.data.comment_id}`).remove();
-  
+    
             new Noty({
               theme: 'relax',
               text: 'Comment Deleted',
@@ -88,6 +94,7 @@ class PostComments {
         });
       });
     }
+    
     
     }
     

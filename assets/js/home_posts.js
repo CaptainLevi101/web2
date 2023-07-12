@@ -15,6 +15,9 @@
                     let newPost = newPostDom(data.data.post);
                     $('#posts-list-container>ul').prepend(newPost);
                     deletePost($(' .delete-post-button', newPost));
+                    //call the create comment class
+                    new PostComments(data.data.post._id);
+                    new ToggleLike($(' .toggle-like-button',newPost));
                 }, error: function (error) {
                     console.log(error.responseText);
                 }
@@ -37,6 +40,10 @@
         ${post.user.name}
         </small>
         </p>
+        <small>
+        <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post.id}"&type=Post">
+         0 Likes
+        </small>
         </div>
         <div class="post-box2">
             <small>
